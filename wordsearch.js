@@ -136,6 +136,18 @@ let wordLetterLocations = [];
 */
 
 /**
+ * We add an event listener to the word input that calls 
+ * addWord() any time that the 'enter' key is pressed.
+ */
+let wordInput = getElem("wordInput");
+wordInput.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      addWord();
+    }
+});
+
+/**
  * Sets the value of 'title' to 'value'
  * 
  * @param {string} value 
