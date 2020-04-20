@@ -1,0 +1,105 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    <title>Wordsearch Generator</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <script src="https://kit.fontawesome.com/cf7a3548ef.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+        <div class="page">
+            <div class="header">
+                <span class="titleContainer">
+                    Oisín's <span class="wordsearchTitle">Wordsearch</span> Generator
+                </span>
+            </div>
+            <div class="content">
+                <div class="section">
+                    <div class="numberContainer">
+                        <span class="number">1.</span>
+                    </div>
+                    <div class="contentContainer">
+                        <div class="label">
+                            Give your wordsearch a title.
+                        </div>
+                        <div class="sectionContent">
+                            <input type="text" id="titleInput" class="textField" onChange="setTitle(this.value)"/>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="section">
+                    <div class="numberContainer">
+                        <span class="number">2.</span>
+                    </div>
+                    <div class="contentContainer">
+                        <div class="label">
+                            What words would you like included in your wordsearch?
+                        </div>
+                        <div class="sectionContent">
+                            <input type="text" id="wordInput" class="textField" />
+                            <button class="textFieldButton btnHover" onClick="addWord()">Add</button>
+                        </div>
+                        <div class="addedWordsContainer" id="addedWordsContainer">
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="numberContainer">
+                        <span class="number">3.</span>
+                    </div>
+                    <div class="contentContainer">
+                        <div class="label">
+                            How big would you like your wordsearch to be?
+                        </div>
+                        <div class="sectionContent column">
+                            <output class="recommendedSize" id="recommendedSize"></output>
+                            <output class="sizeDisplay" id="sizeDisplay">10 × 10</output>
+                            <input type="range" class="slider" id="slider" min="1" max="100" value="10" onInput="updateSizeDisplay(this.value)"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="numberContainer">
+                        <span class="number">4.</span>
+                    </div>
+                    <div class="contentContainer">
+                        <div class="label">
+                            What alphabet would you like to be used to make your wordsearch?
+                        </div>
+                        <div class="sectionContent">
+                            <button class="languageButton btnHover selected" id="englishButton" onClick="chooseEnglish(this)">English</button>
+                            <button class="languageButton btnHover" id="frenchButton" onClick="chooseFrench(this)">French</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="numberContainer">
+                        <span class="number">5.</span>
+                    </div>
+                    <div class="contentContainer">
+                        <button class="generateButton btnHover" onClick="generateWordsearch()">Generate!</button>
+                    </div>
+                </div>
+                <div class="section column centerFlex">
+                    <span id="wordsearchForPrint">
+                        <div class="wordsearchTitleContainer" id="wordsearchTitle"></div>
+                        <div class="wordsearchContainer" id="wordsearchContainer">
+                        </div>
+                    </span>
+                    <span id="revealButtonContainer"></span>
+                </div>
+            </div>
+        </div>
+
+        <script src="html2pdf.js"></script>
+        <script src="wordsearch.js"></script>
+    </body>
+</html>
