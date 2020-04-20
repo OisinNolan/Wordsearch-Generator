@@ -1,4 +1,4 @@
-# Wordsearch_Generator
+# Wordsearch Generator
 A wordsearch generator webpage written with html5 and vanilla javascript. This was made as a project for a module at university.
 
 The wordsearch generation algorithm uses backtracking to try placing each of the words at any possible position in any possible
