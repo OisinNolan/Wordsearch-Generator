@@ -264,6 +264,10 @@ cursor: pointer;
     color: rgb(255, 109, 223);
 }
 
+.wordsearchTitleContainer {
+    text-align: center;
+}
+
 .wordsearchTitle {
     font-size: 24pt;
     color: rgb(255, 109, 223);
@@ -272,6 +276,22 @@ cursor: pointer;
 .titleContainer {
     display: flex;
     flex-direction: column;
+}
+
+.wordList {
+    display: flex;
+    flex-direction: column;
+}
+
+.searchWord {
+    font-size: 12pt;
+    color: #3700B3;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.wordsearchContents {
+    display: flex;
 }
 
 @media only screen and (max-width: 700px) {

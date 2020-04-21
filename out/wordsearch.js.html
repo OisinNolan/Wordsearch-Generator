@@ -1,4 +1,32 @@
-/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: wordsearch.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: wordsearch.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
 *
 *   Wordsearch Generator : written by Oisín Nolan on Monday 20th April 2020
 *
@@ -61,7 +89,7 @@ let random = (max) => {
  * @returns {boolean} whichever of a and b is greater
  */
 let getMax = (a, b) => {
-    if(a < b) {
+    if(a &lt; b) {
         return b;
     } else {
         return a;
@@ -79,7 +107,7 @@ let getMax = (a, b) => {
 let containsPair = (array, p, q) => {
     let res = false;
     array.forEach(elem => {
-        if(elem.i === p && elem.j === q) {
+        if(elem.i === p &amp;&amp; elem.j === q) {
             res = true;
         }
     });
@@ -165,7 +193,7 @@ function addWord() {
     if(word) {
         words.push(word);
         var wordContainerElem = document.getElementById("addedWordsContainer");
-        wordContainerElem.insertAdjacentHTML('beforeend', '<span class="addedWord">' + word + '<i class="fas fa-times icon clickable" onClick=\'removeWord(this)\'></i></span>');
+        wordContainerElem.insertAdjacentHTML('beforeend', '&lt;span class="addedWord">' + word + '&lt;i class="fas fa-times icon clickable" onClick=\'removeWord(this)\'>&lt;/i>&lt;/span>');
         getElem("wordInput").value = "";
         calculateRecommendedSize();
     }
@@ -213,26 +241,21 @@ function generateWordsearch() {
     wordLetterLocations = [];
     let wordsearch = placeWords(m, 0);
     let container = getElem("wordsearchContainer");
-    let searchWordList = getElem("wordList");
     if(wordsearch === null) {
-        container.innerHTML = "<div class=\"errorText\">We couldn't fit all of your words in a grid of size " + size + " × " + size + ", try a bigger grid!</div>";
+        container.innerHTML = "&lt;div class=\"errorText\">We couldn't fit all of your words in a grid of size " + size + " × " + size + ", try a bigger grid!&lt;/div>";
     } else {
         fillGaps(wordsearch);
-        searchWordList.innerHTML = "";
-        words.forEach(word => {
-            searchWordList.innerHTML += "<span class=\"searchWord\">" + word.toUpperCase() + "</span>";
-        });
         let htmlString = "";
-        for(let i=0; i<size; i++) {
-            htmlString += "<div>";
-            for(let j=0; j<size; j++) {
+        for(let i=0; i&lt;size; i++) {
+            htmlString += "&lt;div>";
+            for(let j=0; j&lt;size; j++) {
                 console.log();
-                htmlString += "<div class=\"word" + (containsPair(wordLetterLocations, i, j) ? " wordLetter " : "") + "\">" + wordsearch[i][j].toUpperCase() + "</div>";
+                htmlString += "&lt;div class=\"word" + (containsPair(wordLetterLocations, i, j) ? " wordLetter " : "") + "\">" + wordsearch[i][j].toUpperCase() + "&lt;/div>";
             }
-            htmlString += "</div>";
+            htmlString += "&lt;/div>";
         }
-        getElem("revealButtonContainer").innerHTML = "<button class=\"revealBtn btnHover\" id=\"reavealBtn\" onClick=\"revealWords()\">Reveal words</button>"
-        + "<button class=\"printBtn btnHover\" onClick=\"print()\">Make PDF <i class=\"fas fa-print\"></i></button>"
+        getElem("revealButtonContainer").innerHTML = "&lt;button class=\"revealBtn btnHover\" id=\"reavealBtn\" onClick=\"revealWords()\">Reveal words&lt;/button>"
+        + "&lt;button class=\"printBtn btnHover\" onClick=\"print()\">Make PDF &lt;i class=\"fas fa-print\">&lt;/i>&lt;/button>"
         container.innerHTML = htmlString;
         getElem("wordsearchTitle").innerText = title;
     }
@@ -268,15 +291,15 @@ function chooseEnglish(buttonElem) {
 
 /**
  * This functions makes a matrix 'm' of size 'size' x 'size' populated
- * with empty strings at each m[i,j], 0 <= i,j < size 
+ * with empty strings at each m[i,j], 0 &lt;= i,j &lt; size 
  * @param {number} size 
  * @returns {char[]} m
  */
 function makeEmptyMatrix(size) {
     let m = [];
-    for(let i=0; i<size; i++) {
+    for(let i=0; i&lt;size; i++) {
         let row = [];
-        for(let j=0; j<size; j++) {
+        for(let j=0; j&lt;size; j++) {
             row.push('');
         }
         m.push(row);
@@ -291,7 +314,7 @@ function makeEmptyMatrix(size) {
  * @returns {boolean} true if within bounds, false otherwise
  */
 function withinBounds(i, j) {
-    return i >=0 && j >=0 && i < size && j < size;
+    return i >=0 &amp;&amp; j >=0 &amp;&amp; i &lt; size &amp;&amp; j &lt; size;
 }
 
 /**
@@ -314,8 +337,8 @@ function tryToPlace(matrix, wordIndex, i, j, dirIndex) {
     let couldBePlaced = true;
     let newWordLetterLocations = [];
 
-    for(let k=0; k<word.length && couldBePlaced; k++) {
-        if(matrix[i][j] !== '' && matrix[i][j] !== word[k]) {
+    for(let k=0; k&lt;word.length &amp;&amp; couldBePlaced; k++) {
+        if(matrix[i][j] !== '' &amp;&amp; matrix[i][j] !== word[k]) {
             couldBePlaced = false;
         } else {
             matrix[i][j] = word[k];
@@ -358,13 +381,13 @@ function placeWords(matrix, wordIndex) {
     let iRand = random(size);
     let jRand = random(size);
 
-    for(let iIndex=iRand; iIndex<size+iRand; iIndex++) {
-        for(let jIndex=jRand; jIndex<size+jRand; jIndex++) {
+    for(let iIndex=iRand; iIndex&lt;size+iRand; iIndex++) {
+        for(let jIndex=jRand; jIndex&lt;size+jRand; jIndex++) {
             let i = iIndex%size;
             let j = jIndex%size;
             if(withinBounds(i, j)) {
                 let kRand = random(dirCount);
-                for(let k=kRand; k<dirCount+kRand; k++) {
+                for(let k=kRand; k&lt;dirCount+kRand; k++) {
                     let matrixCopy = cloneArray(matrix);
                     let newMatrix = tryToPlace(matrixCopy, wordIndex, i, j, k%dirCount);
                     
@@ -385,8 +408,8 @@ function placeWords(matrix, wordIndex) {
  * @param {string[][]} matrix 
  */
 function fillGaps(matrix) {
-    for(let i=0; i<size; i++) {
-        for(let j=0; j<size; j++) {
+    for(let i=0; i&lt;size; i++) {
+        for(let j=0; j&lt;size; j++) {
             if(matrix[i][j] === '') {
                 matrix[i][j] = alphabet[random(alphabet.length)];
             }
@@ -431,4 +454,26 @@ function print() {
         filename: 'wordsearch' + (title !== "" ? "_" + title : "") + '.pdf',
     }
     html2pdf(wordsearchContainerElem, options);
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addWord">addWord</a></li><li><a href="global.html#calculateRecommendedSize">calculateRecommendedSize</a></li><li><a href="global.html#chooseEnglish">chooseEnglish</a></li><li><a href="global.html#chooseFrench">chooseFrench</a></li><li><a href="global.html#cloneArray">cloneArray</a></li><li><a href="global.html#containsPair">containsPair</a></li><li><a href="global.html#fillGaps">fillGaps</a></li><li><a href="global.html#generateWordsearch">generateWordsearch</a></li><li><a href="global.html#getElem">getElem</a></li><li><a href="global.html#getMax">getMax</a></li><li><a href="global.html#getMaxWordLength">getMaxWordLength</a></li><li><a href="global.html#hideWords">hideWords</a></li><li><a href="global.html#makeEmptyMatrix">makeEmptyMatrix</a></li><li><a href="global.html#placeWords">placeWords</a></li><li><a href="global.html#print">print</a></li><li><a href="global.html#random">random</a></li><li><a href="global.html#removeFromArray">removeFromArray</a></li><li><a href="global.html#removeWord">removeWord</a></li><li><a href="global.html#revealWords">revealWords</a></li><li><a href="global.html#setTitle">setTitle</a></li><li><a href="global.html#tryToPlace">tryToPlace</a></li><li><a href="global.html#updateSizeDisplay">updateSizeDisplay</a></li><li><a href="global.html#withinBounds">withinBounds</a></li><li><a href="global.html#wordInput">wordInput</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Mon Apr 20 2020 22:37:39 GMT+0100 (Irish Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
